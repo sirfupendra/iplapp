@@ -14,6 +14,10 @@ CORS(app)
 # Define the collection name
 player_collection = mongo.db.players
 
+@app.route('/')
+def hello():
+    return ('hello')
+
 @app.route('/api/player/<player_name>', methods=['GET'])
 def get_player(player_name):
     # Case-insensitive search using regex for exact match
@@ -23,7 +27,7 @@ def get_player(player_name):
         player_data["_id"] = str(player_data["_id"])  # Convert ObjectId to string if necessary
         return jsonify(player_data)
     else:
-        return jsonify({"error": "Player not found"}), 404
+        return jsonify({"error": "Player not found"}), 104
 
 
 if __name__ == "__main__":
