@@ -3,9 +3,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './Car
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './Select';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './Table';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useNavigate } from 'react-router-dom';
 //import img from '../assets/virat.jpg'; // You can keep this for default or dynamically set it based on the response.
 
 export default function Component() {
+
+  const navigate=useNavigate();
   const [playerData, setPlayerData] = useState(null); // Store player data
   const [selectedGround, setSelectedGround] = useState('');
   const [selectedBowler, setSelectedBowler] = useState('');
@@ -14,6 +17,7 @@ export default function Component() {
 
   // Function to fetch player data from the backend
   const fetchPlayerData = async (playerName) => {
+    
     setIsLoading(true);
     try {
       const response = await fetch(`http://localhost:5000/api/player/${playerName}`);
@@ -39,6 +43,14 @@ export default function Component() {
     }
   };
 
+  const handleLogout = () => {
+    // Clear the token from localStorage
+    localStorage.removeItem('token');
+    
+    // Redirect the user to the login page
+    navigate('/login');
+};
+
   return (
     <div className="container mx-auto p-6 bg-white text-black space-y-6">
       {/* Search Bar */}
@@ -54,6 +66,8 @@ export default function Component() {
           Search
         </button>
       </form>
+
+      <button onClick={handleLogout}>Logout</button>
 
       {isLoading && <p>Loading player data...</p>}
 
