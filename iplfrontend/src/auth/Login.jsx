@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import styles from './Login.module.css'; // Import the CSS module
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -23,25 +24,28 @@ function Login() {
     };
 
     return (
-        <form onSubmit={handleLogin}>
-            <input 
-                type="text" 
-                placeholder="Username" 
-                value={username} 
-                onChange={(e) => setUsername(e.target.value)} 
-                required 
-            />
-            <input 
-                type="password" 
-                placeholder="Password" 
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)} 
-                required 
-            />
-            <button type="submit">Login</button>
-        </form>
+        <div className={styles.loginFormContainer}>
+            <form className={styles.loginForm} onSubmit={handleLogin}>
+                <input 
+                    type="text" 
+                    className={styles.inputField} 
+                    placeholder="Username" 
+                    value={username} 
+                    onChange={(e) => setUsername(e.target.value)} 
+                    required 
+                />
+                <input 
+                    type="password" 
+                    className={styles.inputField} 
+                    placeholder="Password" 
+                    value={password} 
+                    onChange={(e) => setPassword(e.target.value)} 
+                    required 
+                />
+                <button type="submit" className={styles.loginButton}>Login</button>
+            </form>
+        </div>
     );
 }
 
 export default Login;
-
