@@ -1,0 +1,175 @@
+/* General styles */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(145deg, #000000, #000000); /* Black and dark grey */
+  font-family: 'Poppins', sans-serif;
+  color: #FFFFFF; /* White text */
+  overflow: hidden;
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  padding: auto;
+  color: #000000;
+ 
+  background: rgb(75, 83, 87);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+}
+
+.logo {
+  font-size: 20px;
+  text-transform: uppercase;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  letter-spacing: 5px;
+  font-weight: bold;
+  color: #000000; /* White */
+}
+
+.navButtons {
+  display: flex;
+  gap: 20px;
+  padding: 50px;
+ 
+}
+
+.loginButton, .signupButton {
+  background-color: #000000; /* White */
+  color: #f9ff82; /* Black text */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  border: 5px solid #000000; /* Black border */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.loginButton:hover, .signupButton:hover {
+  background-color: beige; 
+  color: #000000; /* White text on hover */
+  transform: scale(1.1);
+  border: 5px solid beige; 
+}
+
+/* Hero Section */
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 120px;
+  padding: 20px;
+  width: 100%;
+}
+
+.heroText {
+  font-size: 45px;
+  font-weight: 700;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background: linear-gradient(to right, #FFFFFF, #fff986); /* White to light grey */
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: textGlow 2.5s infinite;
+}
+
+
+
+.subText {
+  font-size: 18px;
+  margin-top: 10px;
+  color: rgb(230, 254, 89); /* Slightly muted white */
+}
+
+.getStarted {
+  background-color: #333333; /* Dark grey */
+  color: #FFFFFF; /* White */
+  border: none;
+  padding: 15px 30px;
+  margin-top: 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.getStarted:hover {
+  background-color: #fffa73; /* Medium grey on hover */
+  
+  color: #333333;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bolder;
+}
+
+/* Animation Effects */
+.animationWrapper {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.circle, .square, .triangle {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  opacity: 0.3;
+  animation: float 6s infinite ease-in-out;
+}
+
+.circle {
+  background-color: #fdfb90; /* White */
+  border-radius: 50%;
+  left: 10%;
+  top: -50%;
+  animation-delay: 0s;
+}
+
+.square {
+  background-color: #aeeafb; /* Light grey */
+  left: 60%;
+  top: 10%;
+  transform: translateX(-50%);
+  animation-delay: 0s;
+}
+
+.triangle {
+  background-color: #f95a5a; /* Dark grey */
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  right: 10%;
+  top: -40%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+  .heroText {
+    font-size: 36px;
+  }
+
+  .navButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .getStarted {
+    padding: 10px 20px;
+  }
+}

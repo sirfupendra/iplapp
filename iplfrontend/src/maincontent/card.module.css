@@ -1,0 +1,61 @@
+/* :root {
+   --primary-color: #ff6f61;
+   --secondary-color: #3c3b6e;
+   --text-color: #333;
+   --bg-color: #fff;
+   --shadow-color: rgba(0, 0, 0, 0.1);
+   --transition-speed: 0.3s;
+ }
+ 
+ .card {
+   border: 1px solid var(--primary-color);
+   border-radius: 12px;
+   padding: 1.5rem;
+   background-color: var(--bg-color);
+   box-shadow: 0 8px 16px var(--shadow-color);
+   transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+ }
+ 
+ .card:hover {
+   transform: translateY(-10px);
+   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .cardHeader {
+   margin-bottom: 1rem;
+ }
+ 
+ .cardTitle {
+   font-size: 1.5rem;
+   font-weight: bold;
+   color: var(--primary-color);
+   margin: 0;
+   opacity: 0;
+   animation: fadeIn var(--transition-speed) ease forwards;
+ }
+ 
+ .cardDescription {
+   font-size: 1rem;
+   color: var(--text-color);
+   opacity: 0;
+   animation: fadeIn 0.5s ease forwards;
+   animation-delay: 0.3s;
+ }
+ 
+ .cardContent {
+   opacity: 0;
+   animation: fadeIn 0.7s ease forwards;
+   animation-delay: 0.6s;
+ }
+ 
+ @keyframes fadeIn {
+   0% {
+     opacity: 0;
+     transform: translateY(10px);
+   }
+   100% {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
+  */
