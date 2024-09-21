@@ -1,0 +1,140 @@
+/* Register.module.css */
+
+/* General Reset */
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+   font-family: 'Arial', sans-serif;
+ 
+}
+
+.registerFormContainer {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   position: relative;
+   z-index: 2;
+   background-color: #000; /* Black background */
+   color: #fff; /* White text */
+   overflow: hidden; /* Prevent scrollbars due to animations */
+}
+
+.registerForm {
+   background-color: rgba(255, 255, 255, 0.1); /* Transparent white background */
+   padding: 2rem;
+   border-radius: 10px;
+   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+   backdrop-filter: blur(8px); /* Slight blur for glassmorphism effect */
+   width: 100%;
+   max-width: 400px;
+   z-index: 3;
+}
+
+.inputField {
+   width: 100%;
+   padding: 0.75rem;
+   margin-bottom: 1rem;
+   border: 2px solid rgba(255, 255, 255, 0.2); /* Light white border */
+   border-radius: 5px;
+   background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+   color: #fff; /* White text */
+   font-size: 1rem;
+   transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.inputField:focus {
+   outline: none;
+   border-color: #0ef; /* Bright blue border on focus */
+   background-color: rgba(255, 255, 255, 0.2); /* Slightly darker on focus */
+}
+
+.registerButton {
+   width: 100%;
+   padding: 0.75rem;
+   background-color: #0ef; /* Bright blue button */
+   color: #000; /* Black text for contrast */
+   border: none;
+   border-radius: 5px;
+   font-size: 1.1rem;
+   font-weight: bold;
+   cursor: pointer;
+   transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.registerButton:hover {
+   background-color: rgba(0, 239, 255, 0.8); /* Slightly transparent on hover */
+   transform: scale(1.05); /* Slight zoom on hover */
+}
+
+.registerButton:active {
+   background-color: rgba(0, 239, 255, 0.6); /* Darker blue on click */
+   transform: scale(1); /* Reset zoom */
+}
+
+/* Background Animation */
+@keyframes rotate {
+   0% { transform: rotate(0deg); }
+   100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+   0% { transform: scale(1); opacity: 0.6; }
+   50% { transform: scale(1.2); opacity: 0.9; }
+   100% { transform: scale(1); opacity: 0.6; }
+}
+
+.rotatingSquares {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 300px;
+   height: 300px;
+   background-color: rgba(0, 239, 255, 0.1); /* Transparent blue */
+   border: 2px solid rgba(0, 239, 255, 0.2); /* Slightly brighter border */
+   transform-origin: center;
+   animation: rotate 10s infinite linear;
+   z-index: 1;
+   pointer-events: none;
+}
+
+.pulsingCircle {
+   position: absolute;
+   bottom: 10%;
+   right: 10%;
+   width: 80px;
+   height: 80px;
+   background-color: rgba(0, 239, 255, 0.2);
+   border-radius: 50%;
+   animation: pulse 2s infinite ease-in-out;
+   z-index: 2;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 600px) {
+   .registerForm {
+       padding: 1.5rem;
+   }
+
+   .inputField {
+       font-size: 0.9rem;
+   }
+
+   .registerButton {
+       font-size: 1rem;
+   }
+
+   .rotatingSquares {
+       width: 200px;
+       height: 200px;
+   }
+
+   .pulsingCircle {
+       width: 60px;
+       height: 60px;
+   }
+}

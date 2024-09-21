@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import styles from './Login.module.css'; // Import the CSS module
+import styles from './Login.module.css'; 
 
 function Login() {
     const [username, setUsername] = useState('');
@@ -25,6 +25,11 @@ function Login() {
 
     return (
         <div className={styles.loginFormContainer}>
+            {/* Background and floating objects */}
+            <div className={styles.backgroundCircles}></div>
+            <div className={styles.floatingSquare}></div>
+            <div className={styles.floatingCircle}></div>
+
             <form className={styles.loginForm} onSubmit={handleLogin}>
                 <input 
                     type="text" 
