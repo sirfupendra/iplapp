@@ -12,21 +12,21 @@ import os
 
 app = Flask(__name__)
 
-# Enable CORS for all routes
+
 CORS(app)
 
-# JWT Configuration
+
 app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY', 'your_jwt_secret_key')
 jwt = JWTManager(app)
 
-# MongoDB Configuration (Now using only one database: 'iplapp')
+
 app.config["MONGO_URI"] = os.getenv('MONGO_URI', 'mongodb://localhost:27017/iplapp')
 client = MongoClient(app.config["MONGO_URI"])
-db = client['iplapp']  # Use 'iplapp' database for both user and player data
+db = client['iplapp']  
 
-# Collections inside the 'iplapp' database
-users_collection = db['users']       # Collection for user authentication
-player_collection = db['players']    # Collection for player data
+
+users_collection = db['users']      
+player_collection = db['players']   
 
 # Home route
 @app.route('/', methods=['GET'])
@@ -83,6 +83,15 @@ def protected():
         return jsonify({"msg": "User not found"}), 404
 
     return jsonify(logged_in_as=user['username']), 200
+
+#players
+@app.route('/api/players', methods=['GET'])
+def get_all_players():
+    players = list(player_collection.find({}))
+    for player in players:
+        player["_id"] = str(player["_id"])  # Convert ObjectId to string
+    return jsonify(players)
+
 
 # Player search route
 @app.route('/api/player/<player_name>', methods=['GET'])

@@ -8,17 +8,26 @@ function Protected() {
 
     useEffect(() => {
         const fetchUserData = async () => {
+            const token = localStorage.getItem('token');
+            
+            if (!token) {
+                console.error("No token found, redirecting to login.");
+                navigate('/login');
+                return;
+            }
+
             try {
-                const token = localStorage.getItem('token');
                 const response = await axios.get('http://localhost:5000/protected', {
                     headers: { Authorization: `Bearer ${token}` },
                 });
+                console.log(response);
                 setUsername(response.data.logged_in_as);
             } catch (error) {
-                console.error(error);
+                console.error("Error fetching user data:", error);
                 navigate('/login');
             }
         };
+
         fetchUserData();
     }, [navigate]);
 
@@ -26,4 +35,3 @@ function Protected() {
 }
 
 export default Protected;
-

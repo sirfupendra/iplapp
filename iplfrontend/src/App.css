@@ -1,13 +1,117 @@
-body{
-   margin: 0;
-   padding: 0;
-   
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 :root {
-   --primary-color: #007bff;
+  /* --primary-color: #007bff;
    --secondary-color: #6c757d;
    --accent-color: #ffc107;
    --background-color: #f8f9fa;
-   --text-color: #343a40;
+   --text-color: #343a40; */
+  --nav-height: 12vh;
+}
+
+.searchbar {
+
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  
+
+}
+
+.containerx {
+ margin:  auto !important;
+ padding:10% auto !important;
+  
+  
+ margin-top: 0% !important;
+  min-height: calc(100vh - 12vh) !important;
+  
+}
+
+.searchx{
+ 
+   width: 70% !important;
+   transition: border-color 0.3s ease, box-shadow 0.2s ease !important;
+ 
+}
+
+
+
+.dropdownx {
+   width: 70% !important;
+   border-radius: 20px !important;
+   color: #7d7d7d !important;
+   top: 35% !important;
+   left: 15% !important;
+   position: absolute !important;
+   background-color: rgb(16, 16, 16) !important;
+   transform: translateY(0%) !important;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8) !important;
+   padding: 10px !important;
+   overflow-y: auto !important;
+   max-height: 200px !important;
+   scrollbar-width: thin !important;
+   scrollbar-color: #888 #444 !important;
  }
  
+ /* Smooth hover effect without glitches */
+ .dropdownx:hover {
+   transform: scale(1.01) !important;
+   transition: transform 0.2s ease-in-out !important;
+ }
+ 
+ /* Custom scrollbar styling */
+ .dropdownx::-webkit-scrollbar {
+   width: 6px !important;
+ }
+ 
+ .dropdownx::-webkit-scrollbar-track {
+   background: #444 !important;
+ }
+ 
+ .dropdownx::-webkit-scrollbar-thumb {
+   background-color: #888 !important;
+   border-radius: 10px !important;
+ }
+ 
+ /* Dropdown item styling */
+ .dropdown-content {
+   display: flex !important;
+   flex-direction: column !important;
+   gap: 10px !important;
+   border-radius: 40px !important;
+   
+ }
+ .dropdown-content:hover {
+   background-color: rgba(238, 234, 166, 0.721) !important;
+   color: rgb(94, 94, 94) !important;
+   border-radius: 40px !important;
+ }
+ 
+ .dropdown-item {
+   display: flex !important;
+   align-items: center !important;
+   
+   border-radius: 40px !important;
+   cursor: pointer !important;
+   transition: background-color 0.3s ease !important;
+ }
+ 
+ .dropdown-item:hover {
+   background-color: rgba(255, 226, 37, 0.256) !important;
+   color: rgb(67, 67, 67) !important;
+   border-radius: 40px !important;
+ }
+ 
+ /* Player avatar styling */
+ .player-avatar {
+   width: 40px !important;
+   height: 40px !important;
+   border-radius: 50% !important;
+   object-fit: cover !important;
+ }
+

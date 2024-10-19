@@ -4,6 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './Table';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../auth/AuthContext';
 //import img from '../assets/virat.jpg'; // You can keep this for default or dynamically set it based on the response.
 
 export default function Component() {
@@ -14,6 +15,9 @@ export default function Component() {
   const [selectedBowler, setSelectedBowler] = useState('');
   const [searchQuery, setSearchQuery] = useState(''); // Store search input
   const [isLoading, setIsLoading] = useState(false); // Loading state
+  const {user}=useAuth();
+  const {logout}=useAuth();
+  
 
   // Function to fetch player data from the backend
   const fetchPlayerData = async (playerName) => {
@@ -44,15 +48,12 @@ export default function Component() {
   };
 
   const handleLogout = () => {
-    // Clear the token from localStorage
-    localStorage.removeItem('token');
-    
-    // Redirect the user to the login page
-    navigate('/login');
+  logout();
 };
 
   return (
-    <div className="container mx-auto p-6 bg-white text-black space-y-6">
+    <div className="container wrapper">
+      <h1>WELCOME , {user} !</h1>
       {/* Search Bar */}
       <form onSubmit={handleSearch} className="mb-6">
         <input

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export function Card({ children, className }) {
+export function Card({ children, className,onClick ,...props}) {
   return (
     <div className={`border rounded-lg shadow-lg p-4 ${className}`}>
       {children}
