@@ -1,4 +1,3 @@
-
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
@@ -47,12 +46,26 @@ def register():
         return jsonify({"msg": "Username already exists"}), 400
 
     hashed_password = generate_password_hash(password)
-    users_collection.insert_one({
+    result = users_collection.insert_one({
         'username': username,
         'password': hashed_password
     })
 
-    return jsonify({"msg": "User registered successfully"}), 201
+    # Retrieve the inserted user
+    inserted_user = users_collection.find_one({"_id": result.inserted_id})
+
+    # Generate an access token for the user
+    access_token = create_access_token(
+        identity=str(inserted_user['_id']),
+        expires_delta=datetime.timedelta(hours=1)
+    )
+
+    return jsonify({
+        "msg": "User registered successfully.",
+        "access_token": access_token
+    }), 201
+
+
 
 # Login route
 @app.route('/login', methods=['POST'])
