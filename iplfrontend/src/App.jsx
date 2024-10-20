@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Register from "./auth/Register";
 import Protected from "./auth/Protected";
 import Login from "./auth/Login";
-import Dashboard from "./maincontent/Dashboard";
+
 import PrivateRoute from "./auth/PrivateRoute";
 import Landingpage from "./pages/Landingpage";
 import { AuthProvider } from "./auth/AuthContext";

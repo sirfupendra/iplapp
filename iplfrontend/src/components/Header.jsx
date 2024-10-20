@@ -5,10 +5,15 @@ import { useAuth } from "../auth/AuthContext";
 
 const Header = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, user,logout } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
   return (
     <div>
       <nav className={styles.navbar}>
+        {/* <img
+          src="iplfrontend\src\assets\cricket-ball.avif"
+          alt=""
+          className={styles.logoimg}
+        /> */}
         <h1 className={styles.logo}>IPL Player Analysis</h1>
         <div className={styles.navButtons}>
           {!isAuthenticated() && (
@@ -41,14 +46,11 @@ const Header = () => {
               className={styles.profile}
               onClick={() => navigate("/profile")}
             >
-              {user}
+              Hi, {user} !
             </button>
           )}
           {isAuthenticated() && (
-            <button
-              className={styles.logoutButton}
-              onClick={() => logout()}
-            >
+            <button className={styles.logoutButton} onClick={() => logout()}>
               Logout
             </button>
           )}

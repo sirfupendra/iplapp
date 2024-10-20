@@ -4,11 +4,7 @@ body {
   box-sizing: border-box;
 }
 :root {
-  /* --primary-color: #007bff;
-   --secondary-color: #6c757d;
-   --accent-color: #ffc107;
-   --background-color: #f8f9fa;
-   --text-color: #343a40; */
+ 
   --nav-height: 12vh;
 }
 
@@ -25,6 +21,7 @@ body {
 .containerx {
  margin:  auto !important;
  padding:10% auto !important;
+ background-color: #151715 !important;
   
   
  margin-top: 0% !important;
@@ -45,7 +42,7 @@ body {
    width: 70% !important;
    border-radius: 20px !important;
    color: #7d7d7d !important;
-   top: 35% !important;
+   top: 55% !important;
    left: 15% !important;
    position: absolute !important;
    background-color: rgb(16, 16, 16) !important;
@@ -58,7 +55,7 @@ body {
    scrollbar-color: #888 #444 !important;
  }
  
- /* Smooth hover effect without glitches */
+
  .dropdownx:hover {
    transform: scale(1.01) !important;
    transition: transform 0.2s ease-in-out !important;
@@ -107,7 +104,7 @@ body {
    border-radius: 40px !important;
  }
  
- /* Player avatar styling */
+
  .player-avatar {
    width: 40px !important;
    height: 40px !important;

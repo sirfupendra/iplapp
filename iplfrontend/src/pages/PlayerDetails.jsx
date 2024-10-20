@@ -1,26 +1,51 @@
-
-
-import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../maincontent/Card';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../maincontent/Select';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../maincontent/Table';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { useAuth } from '../auth/AuthContext';
-import '../App.css'; 
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../components/playerDetailsComponents/Card";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../components/playerDetailsComponents/Select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../components/playerDetailsComponents/Table";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import { useAuth } from "../auth/AuthContext";
+import "../App.css";
 
 export default function PlayerDetail() {
-  const { playerName } = useParams(); 
+  const { playerName } = useParams();
   const navigate = useNavigate();
-  const { user, logout } = useAuth(); 
+  const { logout } = useAuth();
 
   const [playerData, setPlayerData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedGround, setSelectedGround] = useState('');
-  const [selectedBowler, setSelectedBowler] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedGround, setSelectedGround] = useState("");
+  const [selectedBowler, setSelectedBowler] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  
   const fetchPlayerData = async (name) => {
     try {
       const response = await fetch(`http://localhost:5000/api/player/${name}`);
@@ -29,11 +54,11 @@ export default function PlayerDetail() {
         alert(data.error);
       } else {
         setPlayerData(data);
-        setSelectedGround(data.groundPerformance[0]?.ground || '');
-        setSelectedBowler(data.bowlerPerformance[0]?.bowler || '');
+        setSelectedGround(data.groundPerformance[0]?.ground || "");
+        setSelectedBowler(data.bowlerPerformance[0]?.bowler || "");
       }
     } catch (error) {
-      console.error('Error fetching player data:', error);
+      console.error("Error fetching player data:", error);
     } finally {
       setIsLoading(false);
     }
@@ -43,7 +68,6 @@ export default function PlayerDetail() {
     if (playerName) fetchPlayerData(playerName);
   }, [playerName]);
 
-  
   const handleSearch = (event) => {
     event.preventDefault();
     if (searchQuery.trim()) fetchPlayerData(searchQuery.trim());
@@ -51,7 +75,7 @@ export default function PlayerDetail() {
 
   const handleLogout = () => {
     logout();
-    navigate('/login'); 
+    navigate("/login");
   };
 
   if (isLoading) return <p>Loading...</p>;
@@ -59,28 +83,23 @@ export default function PlayerDetail() {
   return (
     playerData && (
       <div className="container wrapper">
-        
-
-        
-        
-
         {/* Player Profile */}
         <div className="flex flex-col md:flex-row items-center gap-6 mb-6">
           <div
             style={{
-              width: '150px',
-              height: '150px',
-              borderRadius: '50%',
-              overflow: 'hidden',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              width: "150px",
+              height: "150px",
+              borderRadius: "50%",
+              overflow: "hidden",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <img
               src={playerData.imageUrl}
               alt={playerData.name}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
             />
           </div>
           <div>
@@ -94,10 +113,15 @@ export default function PlayerDetail() {
           <Card className="bg-white shadow-md">
             <CardHeader>
               <CardTitle>Ground Performance</CardTitle>
-              <CardDescription>Average and strike rate on different grounds</CardDescription>
+              <CardDescription>
+                Average and strike rate on different grounds
+              </CardDescription>
             </CardHeader>
             <CardContent>
-              <Select onValueChange={setSelectedGround} defaultValue={selectedGround}>
+              <Select
+                onValueChange={setSelectedGround}
+                defaultValue={selectedGround}
+              >
                 <SelectTrigger className="w-full border-gray-300">
                   <SelectValue value={selectedGround} />
                 </SelectTrigger>
@@ -111,7 +135,11 @@ export default function PlayerDetail() {
               </Select>
               <div className="mt-4">
                 <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={playerData.groundPerformance.filter((perf) => perf.ground === selectedGround)}>
+                  <BarChart
+                    data={playerData.groundPerformance.filter(
+                      (perf) => perf.ground === selectedGround
+                    )}
+                  >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="ground" />
                     <YAxis />
@@ -129,7 +157,9 @@ export default function PlayerDetail() {
           <Card className="bg-white shadow-md">
             <CardHeader>
               <CardTitle>Maximum Scores</CardTitle>
-              <CardDescription>Highest individual scores in IPL</CardDescription>
+              <CardDescription>
+                Highest individual scores in IPL
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <Table>
@@ -147,7 +177,9 @@ export default function PlayerDetail() {
                       <TableCell>{score.score}</TableCell>
                       <TableCell>{score.against}</TableCell>
                       <TableCell>{score.ground}</TableCell>
-                      <TableCell>{new Date(score.date).toLocaleDateString()}</TableCell>
+                      <TableCell>
+                        {new Date(score.date).toLocaleDateString()}
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -159,10 +191,15 @@ export default function PlayerDetail() {
           <Card className="bg-white shadow-md md:col-span-2">
             <CardHeader>
               <CardTitle>Performance Against Specific Bowlers</CardTitle>
-              <CardDescription>Analysis of batting performance against particular bowlers</CardDescription>
+              <CardDescription>
+                Analysis of batting performance against particular bowlers
+              </CardDescription>
             </CardHeader>
             <CardContent>
-              <Select onValueChange={setSelectedBowler} defaultValue={selectedBowler}>
+              <Select
+                onValueChange={setSelectedBowler}
+                defaultValue={selectedBowler}
+              >
                 <SelectTrigger className="w-full border-gray-300">
                   <SelectValue value={selectedBowler} />
                 </SelectTrigger>
@@ -176,7 +213,11 @@ export default function PlayerDetail() {
               </Select>
               <div className="mt-4">
                 <ResponsiveContainer width="100%" height={300}>
-                  <BarChart data={playerData.bowlerPerformance.filter((perf) => perf.bowler === selectedBowler)}>
+                  <BarChart
+                    data={playerData.bowlerPerformance.filter(
+                      (perf) => perf.bowler === selectedBowler
+                    )}
+                  >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="bowler" />
                     <YAxis />
@@ -195,4 +236,3 @@ export default function PlayerDetail() {
     )
   );
 }
-
